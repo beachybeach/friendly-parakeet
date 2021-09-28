@@ -89,12 +89,17 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-const generatePassword = () => {
 
+
+const generatePassword = () => {
+  var chosenChars = [];
 
   let passLength = window.prompt("How many characters would you like your password to be? Please type a number between 8 and 129")
   if (passLength >= 8 && passLength < 129) {
-    let specialAnswer = window.prompt("Would you like to use special characters?");
+    let specialAnswer = window.confirm("Would you like to use special characters? Please click OK for YES or CANCEL for NO");
+    let numberAnswer = window.confirm("Would you like to use numbers? Please click OK for YES or CANCEL for NO");
+    let upperAnswer = window.confirm("Would you like to use lowercase letters? Please click OK for YES or CANCEL for NO");
+    let lowerAnswer = window.confirm("Would you like to use uppercase letters? Please click OK for YES or CANCEL for NO");
   } else {
     window.alert("Please enter a number between 8 and 129");
     return generatePassword();
