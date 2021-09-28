@@ -90,11 +90,14 @@ var upperCasedCharacters = [
 ];
 
 const generatePassword = () => {
-  window.alert("Welcome to the password generator!");
+
 
   let passLength = window.prompt("How many characters would you like your password to be? Please type a number between 8 and 129")
   if (passLength >= 8 && passLength < 129) {
     let specialAnswer = window.prompt("Would you like to use special characters?");
+  } else {
+    window.alert("Please enter a number between 8 and 129");
+    return generatePassword();
   }
 }
 
@@ -103,6 +106,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  window.alert("Welcome to the password generator!");
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
