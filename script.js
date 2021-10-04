@@ -89,22 +89,54 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-
+let chosenChars = [];
+var passwordText = document.querySelector("#password");
+let finalPass = [];
 
 const generatePassword = () => {
-  var chosenChars = [];
+  getPassLength();
+}
 
+const getPassLength = () => {
   let passLength = window.prompt("How many characters would you like your password to be? Please type a number between 8 and 129")
   if (passLength >= 8 && passLength < 129) {
-    let specialAnswer = window.confirm("Would you like to use special characters? Please click OK for YES or CANCEL for NO");
-    let numberAnswer = window.confirm("Would you like to use numbers? Please click OK for YES or CANCEL for NO");
-    let upperAnswer = window.confirm("Would you like to use lowercase letters? Please click OK for YES or CANCEL for NO");
-    let lowerAnswer = window.confirm("Would you like to use uppercase letters? Please click OK for YES or CANCEL for NO");
+    getCharacterChoices(passLength);
   } else {
     window.alert("Please enter a number between 8 and 129");
     return generatePassword();
   }
 }
+
+const getCharacterChoices = (passLength) => {
+  let specialAnswer = window.confirm("Would you like to use special characters? Please click OK for YES or CANCEL for NO");
+  if (specialAnswer === true) {
+    chosenChars = chosenChars.concat(specialCharacters);
+  }
+  let numberAnswer = window.confirm("Would you like to use numbers? Please click OK for YES or CANCEL for NO");
+  if (numberAnswer === true) {
+    chosenChars = chosenChars.concat(numericCharacters);
+  }
+  let upperAnswer = window.confirm("Would you like to use lowercase letters? Please click OK for YES or CANCEL for NO");
+  if (upperAnswer === true) {
+    chosenChars = chosenChars.concat(upperCasedCharacters);
+  }
+  let lowerAnswer = window.confirm("Would you like to use uppercase letters? Please click OK for YES or CANCEL for NO");
+  if (lowerAnswer === true) {
+    chosenChars = chosenChars.concat(lowerCasedCharacters);
+  }
+
+  else if (specialAnswer === false && numberAnswer === false && upperAnswer === false && lowerAnswer === false) {
+    window.alert('Please select at least one character type');
+    return getCharacterChoices();
+  }
+  for (i = 0; i < passLength; i++) {
+    console.log(passLength);
+    console.log(chosenChars);
+    finalPass.push(chosenChars[Math.floor(Math.random() + chosenChars.length)]);
+    console.log(finalPass);
+  }
+}
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
